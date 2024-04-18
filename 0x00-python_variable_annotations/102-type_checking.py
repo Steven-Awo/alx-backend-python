@@ -4,7 +4,7 @@
     Parameters: lst: Tuple, factor: int = 2
 '''
 
-from typing import Union, List, Any, Tuple Mapping
+from typing import Union, List, Any, Tuple, Mapping
 
 
 def zoom_array(lst: Tuple, factor: int = 2) -> List:
