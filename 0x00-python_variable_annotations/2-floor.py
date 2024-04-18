@@ -6,12 +6,7 @@
 
 
 
-def floor(n: float) -> int:
+def floor(x: float) -> int:
     ''' Returning the largest int value less than
         or equal to n. '''
-    return int(n) if n >= 0 else int(n) - 1
-
-#!/usr/bin/env python3
-''' Description:takes a float n as argument and returns the floor of the float
-    Parameter: n: float
-'''
+    return int(x) if x >= 0 else int(x) - 1
