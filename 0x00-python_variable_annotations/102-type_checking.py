@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-''' Description: Use mypy to validate the following piece of code
-                 and apply any necessary changes.
+''' Description: We are to use mypy to just validate all the following
+    piece of code and to apply to any necessary changes.
     Parameters: lst: Tuple, factor: int = 2
 '''
 
-from typing import Union, Any, Mapping, Tuple, List
+from typing import Union, List, Any, Tuple Mapping
 
 
 def zoom_array(lst: Tuple, factor: int = 2) -> List:
