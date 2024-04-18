@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-''' Description: this takes the string 'str1' and the string 'str2' as arguments
-    and then returns it as a concatenated string
+''' Description: this takes the string 'str1' and the string 'str2'
+    as arguments and then returns it as a concatenated string
         parameters: str1: str
                     str2: str
 '''
