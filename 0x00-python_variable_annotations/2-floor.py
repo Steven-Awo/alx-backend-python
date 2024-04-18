@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-''' Description:takes a float n as argument and returns the floor of the float
+''' Description:takes in a float n as an argument and then returns the floor of the float
     Parameter: n: float
 '''
 
