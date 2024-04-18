@@ -7,6 +7,6 @@
 '''
 
 
-def add(a: float, b: float) -> float:
+def add(m: float, n: float) -> float:
     ''' Returns the addition of a and b. '''
-    return a + b
+    return m + n
