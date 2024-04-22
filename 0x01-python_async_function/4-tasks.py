@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-''' Description: This takes the code from wait_n and alter it into
-    a new function task_wait_n. The code is nearly identical
-    to wait_n except task_wait_random is being called.
+
+''' Description: Take the code from wait_n and alter it into a new function
+                 task_wait_n. The code is nearly identical to wait_n except
+                 task_wait_random is being called.
     Arguments: n: int, max_delay: int = 10
 '''
 
