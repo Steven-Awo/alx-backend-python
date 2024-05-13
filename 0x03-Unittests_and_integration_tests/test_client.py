@@ -71,3 +71,29 @@ class TestGithubOrgClient(unittest.TestCase):
         """ testing for the license's checker """
         self.assertEqual(GithubOrgClient.has_license(repo,
             license), expected)
+
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """ The integration's testing for the github's orgg client """
+
+    @classmethod
+    def setUpClass(cls):
+        """The prepared thats for testing """
+        orgg = TEST_PAYLOAD[0][0]
+        reposi = TEST_PAYLOAD[0][1]
+        orgg_mock = Mock()
+        orgg_mock.json = Mock(return_value=orgg)
+        cls.orgg_mock = orgg_mock
+        reposi_mock = Mock()
+        reposi_mock.json = Mock(return_value=reposi)
+        cls.reposi_mock = reposi_mock
+
+        cls.get_patcher = patch('requests.get')
+        cls.get = cls.get_patcher.start()
+
+        options = {cls.org_payload["repos_url"]: reposi_mock}
+        cls.get.side_effect = lambda y: options.get(y, orgg_mock)
+
+    @classmethod
+    def tearDownClass(cls):
+        """ The unprepared thats for testing """
+        cls.get_patcher.stop()
