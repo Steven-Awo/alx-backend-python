@@ -74,24 +74,23 @@ class TestGithubOrgClient(unittest.TestCase):
 
 class TestIntegrationGithubOrgClient(unittest.TestCase):
     """ The integration's testing for the github's orgg client """
-
-    @classmethod
+                    @classmethod
     def setUpClass(cls):
         """ prepare for testing """
-        org = TEST_PAYLOAD[0][0]
-        repos = TEST_PAYLOAD[0][1]
-        org_mock = Mock()
-        org_mock.json = Mock(return_value=org)
-        cls.org_mock = org_mock
-        repos_mock = Mock()
-        repos_mock.json = Mock(return_value=repos)
-        cls.repos_mock = repos_mock
+        orgg = TEST_PAYLOAD[0][0]
+        reposi = TEST_PAYLOAD[0][1]
+        orgg_mock = Mock()
+        orgg_mock.json = Mock(return_value=orgg)
+        cls.orgg_mock = orgg_mock
+        reposi_mock = Mock()
+        reposi_mock.json = Mock(return_value=reposi)
+        cls.reposi_mock = reposi_mock
 
         cls.get_patcher = patch('requests.get')
         cls.get = cls.get_patcher.start()
 
-        options = {cls.org_payload["repos_url"]: repos_mock}
-        cls.get.side_effect = lambda y: options.get(y, org_mock)
+        options = {orgg["repos_url"]: reposi_mock}
+        cls.get.side_effect = lambda p: options.get(p, orgg_mock)
 
     @classmethod
     def tearDownClass(cls):
