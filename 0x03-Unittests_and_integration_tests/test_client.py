@@ -41,7 +41,7 @@ class TestGithubOrgClient(unittest.TestCase):
         works """
         expected = "www.yes.com"
         payload = {"repos_url": expected}
-        to_mock = 'client.GithubOrgClient.org'
-        with patch(to_mock, PropertyMock(return_value=payload)):
+        too_mock = 'client.GithubOrgClient.org'
+        with patch(too_mock, PropertyMock(return_value=payload)):
             cli = GithubOrgClient("c")
             self.assertEqual(cli._public_repos_url, expected)
