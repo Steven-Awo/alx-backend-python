@@ -90,7 +90,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         cls.get_patcher = patch('requests.get')
         cls.get = cls.get_patcher.start()
 
-        options = {cls.org_payload["repos_url"]: reposi_mock}
+        options = {orgg["repos_url"]: reposi_mock}
         cls.get.side_effect = lambda p: options.get(p, orgg_mock)
 
     @classmethod
