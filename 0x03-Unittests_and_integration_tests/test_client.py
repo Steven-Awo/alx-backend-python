@@ -73,8 +73,9 @@ class TestGithubOrgClient(unittest.TestCase):
             license), expected)
 
 class TestIntegrationGithubOrgClient(unittest.TestCase):
-    """ The integration's testing for the github's orgg client """
-                    @classmethod
+    """ The integration's testing for the github's orgg client"""
+
+    @classmethod
     def setUpClass(cls):
         """ prepare for testing """
         orgg = TEST_PAYLOAD[0][0]
@@ -89,8 +90,8 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         cls.get_patcher = patch('requests.get')
         cls.get = cls.get_patcher.start()
 
-        options = {orgg["repos_url"]: reposi_mock}
-        cls.get.side_effect = lambda p: options.get(p, orgg_mock)
+        options = {cls.org_payload["repos_url"]: reposi_mock}
+        cls.get.side_effect = lambda o: options.get(o, orgg_mock)
 
     @classmethod
     def tearDownClass(cls):
