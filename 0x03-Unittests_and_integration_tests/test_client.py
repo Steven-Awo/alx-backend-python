@@ -77,7 +77,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        """The prepared thats for testing """
+        """ prepare for testing """
         orgg = TEST_PAYLOAD[0][0]
         reposi = TEST_PAYLOAD[0][1]
         orgg_mock = Mock()
@@ -91,11 +91,11 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         cls.get = cls.get_patcher.start()
 
         options = {cls.org_payload["repos_url"]: reposi_mock}
-        cls.get.side_effect = lambda y: options.get(y, orgg_mock)
+        cls.get.side_effect = lambda p: options.get(p, orgg_mock)
 
     @classmethod
     def tearDownClass(cls):
-        """ The unprepared thats for testing """
+        """ The unprepared that's for testing """
         cls.get_patcher.stop()
 
     def test_public_repos(self):
