@@ -33,18 +33,20 @@ class TestAccessNestedMap(TestCase):
             self.assertEqual(wrong_output, e.exception)
 
 class TestGetJson(TestCase):
-    """ Classing thats for the testing of the get_json's
-    function """
+    """ Class for testing get_json function """
+    # order of args: test_url, test_payload
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
         ("http://holberton.io", {"payload": False})
     ])
     def test_get_json(self, test_url, test_payload):
-        """ Testing the method that returns the actual correct output """
-        the_mocks_response = Mock()
-        the_mocks_response.json.return_value = test_payload
-
-        with patch('requests.get', return_value=the_mocks_response):
-            realist_response = get_json(test_url)
-            self.assertEqual(realist_response, test_payload)
-            the_mocks_response.json.assert_called_once()
+        """ Test method returns correct output """
+        # set mock response to have return value of test payload
+        mock_response = Mock()
+        mock_response.json.return_value = test_payload
+        # function calls requests.get, need patch to get mock return value
+        with patch('requests.get', return_value=mock_response):
+            real_response = get_json(test_url)
+            self.assertEqual(real_response, test_payload)
+            # check that mocked method called once per input
+            mock_response.json.assert_called_once()
