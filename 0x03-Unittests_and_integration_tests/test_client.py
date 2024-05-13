@@ -97,3 +97,25 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     def tearDownClass(cls):
         """ The unprepared thats for testing """
         cls.get_patcher.stop()
+
+    def test_public_repos(self):
+        """ public reposi test """
+        p = GithubOrgClient("c")
+        self.assertEqual(p.orgg, self.org_payload)
+        self.assertEqual(p.repos_payload, self.repos_payload)
+        self.assertEqual(p.public_repos(), self.expected_repos)
+        self.assertEqual(p.public_repos("NONEXISTENT"), [])
+        self.get.assert_has_calls([call("https://api.github.com/orgs/c"),
+                                   call(self.org_payload["repos_url"])])
+
+    def test_public_repos_with_license(self):
+        """ public reposi test """
+        p = GithubOrgClient("c")
+        self.assertEqual(p.orgg, self.org_payload)
+        self.assertEqual(p.repos_payload, self.repos_payload)
+        self.assertEqual(p.public_repos(), self.expected_repos)
+        self.assertEqual(p.public_repos("NONEXISTENT"), [])
+        self.assertEqual(p.public_repos("apache-2.0"), self.apache2_repos)
+        self.get.assert_has_calls([call("https://api.github.com/orgs/c"),
+                                   call(self.org_payload["repos_url"])])
+
