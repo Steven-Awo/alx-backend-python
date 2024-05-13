@@ -50,3 +50,29 @@ class TestGetJson(TestCase):
             self.assertEqual(real_response, test_payload)
             # check that mocked method called once per input
             mock_response.json.assert_called_once()
+
+class TestMemoize(TestCase):
+    """ The class thats for the testing of the memoization """
+
+    def test_memoize(self):
+        """ Testing for the memoize's function """
+
+        class TestClass:
+            """ A Test's class """
+
+            def a_method(self):
+                """ The method thats to always just return 42 """
+                return 42
+
+            @memoize
+            def a_property(self):
+                """ Returning the memoized actual property """
+                return self.a_method()
+
+        with patch.object(TestClass, 'a_method', return_value=42) as patched:
+            testing_class = TestClass()
+            realist_return = testing_class.a_property
+            realist_return = testing_class.a_property
+
+            self.assertEqual(realist_return, 42)
+            patched.assert_called_once()
